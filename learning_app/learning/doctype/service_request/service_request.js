@@ -20,6 +20,20 @@ frappe.ui.form.on("Service Request", {
                 await frm.save();
                 },);
 
+                frm.add_custom_button(("PUT queue"),async() =>{
+                       
+                        frappe.call({
+                                method:"learning_app.tasks.start_process",
+                        });
+
+                        frappe.realtime.on("service_request_done", (data) => {
+                        frappe.msgprint({
+                        message: data.message,
+                        indicator: "green"
+                       });
+                });
+                })
+
                 // const dialog = new frappe.ui.Dialog({
                 // title: __("New Contact"),
                 // fields: [
@@ -51,14 +65,11 @@ frappe.ui.form.on("Service Request", {
                                 });
                                 dialog.hide();
 
-                                frappe.msgprint({
-                                        title: ("Created"),
-                                        message: ("Service Request {0} was created.", [response.message]),
-                                        indicator: "green"
-                                });
+                                frappe.msgprint("Service Request was created.");
                         }
                 });
                 dialog.show();
         });
         }
+        
 });

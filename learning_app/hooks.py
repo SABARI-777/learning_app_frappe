@@ -262,3 +262,7 @@ doc_events = {
         "validate":"learning_app.events.todo.validate_desc"
     }
 }
+
+scheduler_events = {
+    "daily": ["learning_app.tasks.daily_maintenance"]
+}
