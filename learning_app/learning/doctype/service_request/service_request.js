@@ -61,11 +61,18 @@ frappe.ui.form.on("Service Request", {
                                         type:"POST",
                                         args:{"subject":values.subject},
                                         freeze:true,
-                                        freeze_message: ("Creating request...")
+                                        freeze_message: ("Creating request..."),
+                                        callback: function (r) {
+                                        console.log(r.message);
+                                        frappe.msgprint({
+                                                title: ("Created"),
+                                                message: `Service Request ${r.message} was created.`,
+                                                indicator: "green"
+                                        });
+                                       }
                                 });
                                 dialog.hide();
-
-                                frappe.msgprint("Service Request was created.");
+                               
                         }
                 });
                 dialog.show();

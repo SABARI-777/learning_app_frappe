@@ -9,4 +9,6 @@ def create_service_request(subject: str) -> str:
 	doc.customer_name = frappe.session.user
 	doc.description = "Dialog Descritpion"
 	doc.insert()
+	frappe.db.commit()
+	print(doc.name)
 	return doc.name

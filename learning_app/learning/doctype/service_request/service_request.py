@@ -39,5 +39,5 @@ class ServiceRequest(Document):
 		self.total_amount = total
 
  		
-	def after_insert(self):
-		frappe.msgprint("DOC SAVED SUCCESSFULLY !!!")
+	# def after_insert(self):
+	# 	frappe.msgprint("DOC SAVED SUCCESSFULLY !!!")
