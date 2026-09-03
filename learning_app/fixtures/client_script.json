@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Service Request",
+  "enabled": 1,
+  "modified": "2026-09-03 18:47:02.295422",
+  "module": "learning",
+  "name": "Service request script",
+  "script": "frappe.ui.form.on('Service Request', {\n\trefresh(frm) {\n\t\t frm.add_custom_button((\"Fixture\"),()=>{\n\t\t     frappe.msgprint(\"HELLO FIXTURES \")\n\t\t })\n\t}\n})",
+  "view": "Form"
+ }
+]

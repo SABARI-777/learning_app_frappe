@@ -1,25 +1,13 @@
+<!-- learning_app/www/articles.html -->
 {% extends "templates/web.html" %}
-
-{% block page_content %}
-
-<h1>{{ title }}</h1>
-<table>
-        <th>NAME</th>
-        <th>subject </th>
-        <th>CUSTOMER_NAME</th>
-        <th>status</th>
-
-</table>
-<ul>
-{% for article in sr %}
-        <li>
-            {{ article.name }} -
-            {{ article.subject }} -
-            {{ article.customer_name }} -
-            {{ article.status }}
-        </li>
-
- {% endfor %}
-</ul>
-
-{% endblock %}
+    {% block page_content %}
+    <h1>{{ title }}</h1>
+        <ul>
+            {% for article in sr %}
+                <li><a href="/service/{{ article.name | urlencode }}">{{ article.name }}</a>
+                </li>
+                {% else %}
+                <li>No published articles.</li>
+            {% endfor %}
+        </ul>
+    {% endblock %}

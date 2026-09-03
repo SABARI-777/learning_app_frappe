@@ -266,3 +266,10 @@ doc_events = {
 scheduler_events = {
     "daily": ["learning_app.tasks.daily_maintenance"]
 }
+
+fixtures = [
+    {
+        "dt": "Client Script",
+        "filters": [["name", "=", "Service request script"]],
+    }
+]
