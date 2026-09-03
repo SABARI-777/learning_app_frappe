@@ -10,4 +10,55 @@ frappe.ui.form.on("Service Request", {
         row.amount = row.rate * row.qty;
         frm.refresh_field("items");
 	},
+
+        refresh(frm){
+
+                if (!frm.is_new()){
+
+                frm.add_custom_button(("Start"), async () => {
+                await frm.set_value("status", "In Progress");
+                await frm.save();
+                },);
+
+                // const dialog = new frappe.ui.Dialog({
+                // title: __("New Contact"),
+                // fields: [
+                // { fieldname: "first_name", label: __("First Name"), fieldtype: "Data", reqd: 1
+                // }
+                // ],
+                // primary_action_label: __("Continue"),
+                // primary_action(values) {
+                // dialog.hide();
+                // frappe.route_options = { first_name: values.first_name };
+                // frappe.new_doc("Contact");
+                // }
+                // });
+                // dialog.show();
+                }   
+                
+                frm.add_custom_button(("ADD"), async () => {
+                const dialog = new frappe.ui.Dialog({
+                        title:"CREATE NEW SERVICE REQUEST ",
+                        fields:[{fieldname:"subject",label:"SUBJECT",fieldtype:"Data",reqd:1}],
+                        primary_action_label:"Create",
+                        async primary_action(values){
+                              const res =  frappe.call({
+                                        method:"learning_app.api.create_service_request.create_service_request",
+                                        type:"POST",
+                                        args:{"subject":values.subject},
+                                        freeze:true,
+                                        freeze_message: ("Creating request...")
+                                });
+                                dialog.hide();
+
+                                frappe.msgprint({
+                                        title: ("Created"),
+                                        message: ("Service Request {0} was created.", [response.message]),
+                                        indicator: "green"
+                                });
+                        }
+                });
+                dialog.show();
+        });
+        }
 });
