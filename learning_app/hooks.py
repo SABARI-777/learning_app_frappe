@@ -273,3 +273,4 @@ fixtures = [
         "filters": [["name", "=", "Service request script"]],
     }
 ]
+app_include_js = ["custom_desk.bundle.js"]
